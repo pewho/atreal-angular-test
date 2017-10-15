@@ -1,0 +1,30 @@
+<div class="col-md-12">
+    <h1>Nouvelle partie</h1>
+    <form name="gameConfigForm" novalidate ng-submit="gameConfigForm.$valid && configGame.launchGame()">
+        <div class="form-group">
+            <label for="game-select">Game mode</label>
+            <select ng-model="configGame.game.mode" id="game-select" name="game-select" required>
+                <option selected value="">Selectionnez un mode</option>
+                <option value="101">101</option>
+                <option value="301">301</option>
+                <option value="501">501</option>
+            </select>
+        </div>
+        <div ng-show="configGame.hasGamers()">
+            <h2>Joueurs</h2>
+            <fieldset>
+            <div class="row">
+                <div class="col-md-4" ng-repeat="gamer in configGame.game.gamers">
+                    <p>Joueur {{$index + 1}} : <b>{{ gamer.name }}</b></p>
+                </div>
+            </div>
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <label for="new-challenger-name">Nouveau joueur</label>
+            <input ng-model="configGame.newGamerName" id="new-challenger-name" type="text" name="new-challenger-name" />
+            <button type="button" class="btn btn-default" ng-click="configGame.addGamer()">Ajouter le joueur</button>
+        </div>
+       <input class="btn btn-primary btn-large" type="submit" value="Lancer la partie" />
+    </form>
+</div>

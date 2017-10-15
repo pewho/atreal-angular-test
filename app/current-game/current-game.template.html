@@ -1,0 +1,8 @@
+<div class="col-md-12">
+    TESTS
+    {{ gameManager.game.mode }}
+
+    <div ng-repeat="gamer in gameManager.game.gamers">
+        {{gamer.name }} : {{ gamer.score}}
+    </div>
+</div>
