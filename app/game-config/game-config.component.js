@@ -8,6 +8,7 @@ angular.module('gameConfig')
             this.game = game;
 
             var newGamerName = null;
+
             this.hasGamers = function() {
                 return this.game.gamers.length > 0;
             };
@@ -23,13 +24,17 @@ angular.module('gameConfig')
             };
 
             this.launchGame = function() {
-                var that = this;
-                angular.forEach(this.game.gamers, function(gamer) {
+                if (this.hasGamers()){
+                    var that = this;
+                    angular.forEach(this.game.gamers, function(gamer) {
 
-                    gamer.score = that.game.mode;
-                });
+                        gamer.score = that.game.mode;
+                    });
 
-                $location.path("/game");
+                    $location.path("/game");
+                } else {
+                    return false;
+                }
             };
 
             this.resetGame = function() {

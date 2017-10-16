@@ -13,10 +13,19 @@
             <p class="col md-4" ng-repeat="try in gameManager.currentTries">{{ $index +1 }} : <b>{{ try }}</b></p>
         </div>
         <div id="current-gamer" class="row">
-            <form novalidate ng-submit="gameManager.addTry()">
-                <input type="number" ng-model="gameManager.try" required />
-                <button class="btn btn-principal" type="submit">Valider</button>
+            <div class="col-md-6">
+            <form novalidate ng-submit="gameManager.addTry()" name="tryForm">
+                <div class="form-group">
+                    <input class="form-control" type="number" ng-model="gameManager.try" name="tryIn" required min="1"/>
+                </div>
+                <div class="alert alert-danger" ng-show="tryForm.$submitted && tryForm.tryIn.$error.number">Le score doit etre un nombre</div>
+                <div class="alert alert-danger" ng-show="tryForm.$submitted && tryForm.tryIn.$error.required">Le score doit etre present</div>
+                <div class="alert alert-danger" ng-show="tryForm.$submitted && tryForm.tryIn.$error.min">Le score doit etre supérieur à 0</div>
+                <div class="form-group">
+                    <button class="btn btn-principal" type="submit">Valider</button>
+                </div>
             </form>
+        </div>
         </div>
     </div>
 

@@ -5,7 +5,7 @@ angular.
     .component('currentGame', {
         templateUrl: 'current-game/current-game.template.html',
         controllerAs: "gameManager",
-        controller: ["Game","$location", function(game, $location) {
+        controller: ["Game","$location", "$scope", function(game, $location, $scope) {
             this.try = 0;
 
             this.isWon = false;
@@ -17,9 +17,10 @@ angular.
             this.currentTries = [];
 
             this.addTry = function() {
-                if (this.try === 0) {
+                if (this.try == null || this.try === 0) {
                     return false;
                 }
+
 
                 this.currentTries.push(this.try);
                 this.try = 0;
@@ -29,6 +30,8 @@ angular.
                     this.registerScore();
                     this.changeGamer();
                 }
+
+                $scope.tryForm.$submitted = false;
             }
 
             this.currentTriesScore = function() {
