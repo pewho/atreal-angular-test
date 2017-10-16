@@ -15,6 +15,7 @@ angular.
             this.currentGamerIdx = 0;
             this.currentTour = 1;
             this.currentTries = [];
+
             this.addTry = function() {
                 if (this.try === 0) {
                     return false;
@@ -76,7 +77,22 @@ angular.
             }
 
             this.resetGame = function() {
+                this.game.resetGame();
                 $location.path("/");
+            }
+
+            this.resetSameGame = function() {
+                var gameInfo = this.game;
+                angular.forEach(this.game.gamers, function(gamer) {
+                    gamer.score = gameInfo.mode;
+                });
+
+                this.isWon = false;
+                this.gamerWon = null;
+                this.currentTour = 1;
+                this.currentGamerIdx = 0;
+                this.currentTries = [];
+                this.try = 0;
             }
         }]
     });

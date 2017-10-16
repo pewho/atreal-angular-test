@@ -23,5 +23,6 @@
     <div ng-show="gameManager.isWon">
         <h2>{{ gameManager.gamerWon.name }} gagne la partie !</h2>
         <button class="btn btn-primary btn-large" type="button" ng-click="gameManager.resetGame()">Recommencer ?</button>
+        <button class="btn btn-large" type="button" ng-click="gameManager.resetSameGame()">Recommencer avec les mêmes reglages ?</button>
     </div>
 </div>

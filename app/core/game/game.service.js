@@ -5,7 +5,11 @@ angular.
     factory('Game', function() {
         var game = {
             mode: '',
-            gamers: []
+            gamers: [],
+            resetGame: function() {
+                this.mode = '';
+                this.gamers = [];
+            }
         };
         return game;
     });

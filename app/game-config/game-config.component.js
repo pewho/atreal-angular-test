@@ -30,7 +30,10 @@ angular.module('gameConfig')
                 });
 
                 $location.path("/game");
-
             };
+
+            this.resetGame = function() {
+                this.game.resetGame();
+            }
         }]
     });
