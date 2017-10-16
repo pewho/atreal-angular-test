@@ -1,8 +1,27 @@
 <div class="col-md-12">
-    TESTS
-    {{ gameManager.game.mode }}
+    <h2>Tour {{ gameManager.currentTour }}</h2>
+    <div id="gamers-score" class="row">
+        <h3>Joueurs</h3>
+        <p class="col-md-4" ng-repeat="gamer in gameManager.game.gamers">{{ gamer.name }} : <b>{{ gamer.score }}</b></p>
+    </div>
 
-    <div ng-repeat="gamer in gameManager.game.gamers">
-        {{gamer.name }} : {{ gamer.score}}
+    <div ng-hide="gameManager.isWon" class="row">
+        <h3>{{ gameManager.currentGamer().name }}</h3>
+
+        <div ng-show="gameManager.currentTries.length > 0">
+            <h3>Current Score : {{ gameManager.currentGamerScore() }}</h3>
+            <p class="col md-4" ng-repeat="try in gameManager.currentTries">{{ $index +1 }} : <b>{{ try }}</b></p>
+        </div>
+        <div id="current-gamer" class="row">
+            <form novalidate ng-submit="gameManager.addTry()">
+                <input type="number" ng-model="gameManager.try" required />
+                <button class="btn btn-principal" type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
+
+    <div ng-show="gameManager.isWon">
+        <h2>{{ gameManager.gamerWon.name }} gagne la partie !</h2>
+        <button class="btn btn-primary btn-large" type="button" ng-click="gameManager.resetGame()">Recommencer ?</button>
     </div>
 </div>

@@ -13,7 +13,6 @@ angular.module('gameConfig')
             };
 
             this.addGamer = function() {
-                console.log(this);
                 if( this.newGamerName ) {
                     this.game.gamers.push({
                         name: this.newGamerName
